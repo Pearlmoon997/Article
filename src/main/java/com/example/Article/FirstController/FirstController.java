@@ -9,13 +9,13 @@ public class FirstController {
 
     @GetMapping("/hi") //접속할 url 주소
     public String nice(Model model) {   //Model 등록
-        model.addAttribute("username", "문기"); //변수 등록
+        model.addAttribute("username", "깅"); //변수 등록, username안에 값을 등
         return "greetings"; // templates/greetings.mustache 를 브라우저로 전송
     }
 
     @GetMapping("/bye")
     public String Bye(Model model){
-        model.addAttribute("nickname", "moongi");
+        model.addAttribute("nickname", "gingging");
         return "goodbye"; //보여줄 view template 페이지
     }
 }
