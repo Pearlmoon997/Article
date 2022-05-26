@@ -1,5 +1,6 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.0'
+	//스프링부트 2.7.0 mustache 한글 깨짐 이슈로 인한 2.4.1버전으로 변경
+	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
