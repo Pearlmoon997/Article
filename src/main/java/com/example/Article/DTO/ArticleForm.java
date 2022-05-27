@@ -1,5 +1,7 @@
 package com.example.Article.DTO;
 
+import com.example.Article.Entity.Article;
+
 //form 데이터를 받아 올 그릇
 public class ArticleForm {
     private String title;
@@ -18,5 +20,9 @@ public class ArticleForm {
                 "title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public Article toEntity() { //Entity 변환 메소드
+        return new Article(null, title, content); //Article 의 생성자를 호출
     }
 }
