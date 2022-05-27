@@ -34,7 +34,7 @@ public class ArticleController {
         //Repository 에게 Entity 를 DB에 저장하게 함
         Article saved = articleRepository.save(article); //article 데이터를 save, save 된 데이터를 saved 이름으로 반환
         log.info(saved.toString());
-       return "";
+       return "redirect:/articles/" + saved.getId(); //redirect 설정
     }
 
     @GetMapping("/articles/{id}") //id 위치에 들어가는 값은 변함
