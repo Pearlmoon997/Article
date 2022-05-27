@@ -3,11 +3,13 @@ package com.example.Article.Controller;
 import com.example.Article.DTO.ArticleForm;
 import com.example.Article.Entity.Article;
 import com.example.Article.Repository.ArticleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Slf4j // lombok 로깅
 @Controller
 public class ArticleController {
 
@@ -21,13 +23,13 @@ public class ArticleController {
 
     @PostMapping("articles/create") //form 에서 method 가 post
     public String createArticle(ArticleForm articleForm) {  //dto 를 파라미터 값으로 선언
-        System.out.println(articleForm.toString());
+        log.info(articleForm.toString());
         //DTO -> Entity 변환
         Article article = articleForm.toEntity();
-        System.out.println(article.toString());
+        log.info(article.toString());
         //Repository 에게 Entity 를 DB에 저장하게 함
         Article saved = articleRepository.save(article); //article 데이터를 save, save 된 데이터를 saved 이름으로 반환
-        System.out.println(saved.toString());
+        log.info(saved.toString());
        return "";
     }
 }
