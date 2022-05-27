@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Slf4j // lombok 로깅
 @Controller
 public class ArticleController {
@@ -44,5 +46,15 @@ public class ArticleController {
         model.addAttribute("article", articleEntity); //article 이름으로 articleEntity 등록
         //보여줄 페이지 설정
         return "articles/show";
+    }
+
+    @GetMapping("/articles")
+    public String index(Model model){
+        //모든 article 가져옴
+        List<Article> articleEntityList = articleRepository.findAll(); //타입 캐스팅
+        //가져온 article 묶음을 view 로 전달
+        model.addAttribute("articleList", articleEntityList);
+        //view 페이지 설정
+        return "articles/index";
     }
 }
