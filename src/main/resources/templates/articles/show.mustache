@@ -1,0 +1,25 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Entity 를 가져오는 mustache 문법 -->
+    {{#article}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+        <!-- 이 부분까지 article 사용 -->
+    {{/article}}
+    </tbody>
+</table>
+
+
+{{>layouts/footer}}

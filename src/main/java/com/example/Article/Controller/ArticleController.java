@@ -6,7 +6,9 @@ import com.example.Article.Repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j // lombok 로깅
@@ -31,5 +33,16 @@ public class ArticleController {
         Article saved = articleRepository.save(article); //article 데이터를 save, save 된 데이터를 saved 이름으로 반환
         log.info(saved.toString());
        return "";
+    }
+
+    @GetMapping("/articles/{id}") //id 위치에 들어가는 값은 변함
+    public String show(@PathVariable Long id, Model model){ //id 라는 변수는 url 주소로 부터 입력
+        log.info("id = " +id);
+        //id 로 데이터를 가져옴
+        Article articleEntity = articleRepository.findById(id).orElse(null); //id 값으로 데이터 조회, 값이 없으면 null
+        //가져온 데이터를 model 에 등록
+        model.addAttribute("article", articleEntity); //article 이름으로 articleEntity 등록
+        //보여줄 페이지 설정
+        return "articles/show";
     }
 }
