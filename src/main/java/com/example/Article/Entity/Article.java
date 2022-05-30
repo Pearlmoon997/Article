@@ -5,20 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor //디폴트 생성자
 @Getter //게터 추가
-@Entity //DB가 해당 객체를 인식 가능
+@Entity //DB가 해당 객체를 인식 가능, (해당 클래스로 테이블 생성)
 public class Article {
 
     @Id //대표값 지정
-    @GeneratedValue // 자동 생성 Annotation
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 Annotation
     private Long id;
 
     @Column //DB의 테이블 단위와 연결
