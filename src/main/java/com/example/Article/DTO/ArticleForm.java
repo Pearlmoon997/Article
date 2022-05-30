@@ -2,10 +2,14 @@ package com.example.Article.DTO;
 
 import com.example.Article.Entity.Article;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor // lombok 생성자
 @ToString // lombok toString
+@NoArgsConstructor
+@Setter
 //form 데이터를 받아 올 그릇
 public class ArticleForm {
     private Long id;
