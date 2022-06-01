@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service //서비스 선 (서비스 객체를 스프링부트에 생성)
+@Service //서비스 선정 (서비스 객체를 스프링부트에 생성)
 public class ArticleService {
 
     @Autowired
@@ -68,7 +68,7 @@ public class ArticleService {
     }
 
 
-    @Transactional //해당 메소드를 트랜잭션으로 묶 -> 메소드 수행을 실패하면 메소드 실행 이전의 상태로 되돌림
+    @Transactional //해당 메소드를 트랜잭션으로 묶 -> 메소드 수행을 실패하면 메소드 실행 이전의 상태로 되돌
     public List<Article> createArticles(List<ArticleForm> dtos) {
         //dto 묶음을 Entity 묶음으로 변환
         List<Article> articleList = dtos.stream()       //스트림 문법
