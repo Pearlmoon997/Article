@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service //서비스 선 (서비스 객체를 스프링부트에 생성)
@@ -63,5 +65,23 @@ public class ArticleService {
         articleRepository.delete(target);
         //반환
         return target;
+    }
+
+
+    @Transactional //해당 메소드를 트랜잭션으로 묶 -> 메소드 수행을 실패하면 메소드 실행 이전의 상태로 되돌림
+    public List<Article> createArticles(List<ArticleForm> dtos) {
+        //dto 묶음을 Entity 묶음으로 변환
+        List<Article> articleList = dtos.stream()       //스트림 문법
+                .map(dto -> dto.toEntity())
+                .collect(Collectors.toList());
+        //Entity 묶음을 DB로 저장
+        articleList.stream()
+                .forEach(article -> articleRepository.save(article));
+        //강제 에러 발생
+        articleRepository.findById(-1L).orElseThrow(
+                () -> new IllegalArgumentException("실패")
+        );
+        //반환
+        return articleList;
     }
 }
