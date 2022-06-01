@@ -68,7 +68,7 @@ public class ArticleService {
     }
 
 
-    @Transactional //해당 메소드를 트랜잭션으로 묶 -> 메소드 수행을 실패하면 메소드 실행 이전의 상태로 되돌
+    @Transactional //해당 메소드를 트랜잭션으로 묶음 -> 메소드 수행을 실패하면 메소드 실행 이전의 상태로 되돌
     public List<Article> createArticles(List<ArticleForm> dtos) {
         //dto 묶음을 Entity 묶음으로 변환
         List<Article> articleList = dtos.stream()       //스트림 문법
