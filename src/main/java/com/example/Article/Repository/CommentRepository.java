@@ -13,7 +13,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     //특정 게시글의 모든 댓글 조회
     //쿼리문 설정 어노테이션
     @Query(value = "SELECT * FROM comment WHERE article_id = :articleId", nativeQuery = true)
-    List<Comment> findByArticleId(@Param("articleId") Long articleId);
+    List<Comment> findByArticleId(@Param("articleId") Long articleId); //이 articleId 가 위의 :articleId 로 들어감
 
     //특정 닉네임의 모든 댓글 조회
     //xml 로 작성
