@@ -12,6 +12,9 @@
                         data-bs-nickname="{{nickname}}"
                         data-bs-body="{{body}}"
                         data-bs-article-id="{{articleId}}">수정</button>
+                <!-- 삭제 버튼 -->
+                <button type="button" class="btn btn-sm btn-outline-danger comment-delete-btn"
+                        data-comment-id="{{id}}">삭제</button>
             </div>
             <div class="card-body">
                 {{body}}
@@ -99,6 +102,41 @@
             //현재 페이지 새로고침
             window.location.reload();
         });
+    });
+}
+</script>
+
+<!-- 댓글 삭제 -->
+<script>
+{
+    //. 은 클래스 명으로 가져옴
+    const commentDeleteBtns = document.querySelectorAll(".comment-delete-btn"); //삭제 버튼을 묶음으로 반환
+    //이벤트 처리
+    commentDeleteBtns.forEach(btn => {
+        //각 버튼의 이벤트 처리
+       btn.addEventListener("click", (event) => {
+           //이벤트 발생 요소 선택
+           const commentDeleteBtn = event.srcElement;
+
+           //id 가져오기
+           const commentId = commentDeleteBtn.getAttribute("data-comment-id");
+           console.log(`삭제 버튼 클릭: ${commentId}`);   //` `(백틱) = "삭제 버튼 클릭" + commentId
+
+           //API 호출
+           const url = `/api/comments/${commentId}`     //백틱
+           fetch(url, {
+               method: "DELETE"
+           }).then(response => {
+               //댓글 삭제 실패 처리
+               if (!response.ok) {
+                   alert("댓글 삭제 실패");
+                   return;
+               }
+               //삭제 성공, 댓글 화면에서 지움
+               const target = document.querySelector(`#comments-${commentId}`);     //백틱
+               target.remove();
+           });
+       });
     });
 }
 </script>
