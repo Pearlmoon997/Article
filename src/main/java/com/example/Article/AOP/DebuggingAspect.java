@@ -15,7 +15,8 @@ public class DebuggingAspect {
 
     //어느 지점(메소드)에 부가기능을 주입할지 정함: CommentService#create()
     //@Pointcut("execution(* com.example.Article.Service.CommentService.create(..))") => create 메소드에 적용
-    @Pointcut("execution(* com.example.Article.Service.CommentService.*(..))") //모든 메소드에 적용
+    //@Pointcut("execution(* com.example.Article.Service.CommentService.*(..))") //모든 메소드에 적용
+    @Pointcut("execution(* com.example.Article.API.*.*(..))") //API 패키지의 모든 메소드
     private void cut() {}
 
     //실행시점 설정: cut 대상이 수행되기 이전에 수행
